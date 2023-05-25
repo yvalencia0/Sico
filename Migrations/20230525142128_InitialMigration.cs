@@ -20,6 +20,7 @@ namespace BackendSico.Migrations
                     name2 = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     lastname1 = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
                     lastname2 = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    email = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     typePerson = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -33,7 +34,6 @@ namespace BackendSico.Migrations
                 {
                     id = table.Column<int>(type: "int", nullable: false),
                     tuition = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    email = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     fkPersonStu = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>

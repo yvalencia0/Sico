@@ -43,6 +43,12 @@ app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
+
+//Habilitacion de Cors para permitir la utilización de este Backend (URL) desde cualquier tipo de Frontend (URL)
+app.UseCors(x => x.AllowAnyOrigin()
+                  .AllowAnyMethod()
+                  .AllowAnyHeader());
+
 app.MapControllers();
 
 app.Run();

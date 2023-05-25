@@ -67,6 +67,10 @@ namespace BackendSico.Migrations
                     b.Property<int>("id")
                         .HasColumnType("int");
 
+                    b.Property<string>("email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("lastname1")
                         .IsRequired()
                         .HasMaxLength(20)
@@ -98,10 +102,6 @@ namespace BackendSico.Migrations
                 {
                     b.Property<int>("id")
                         .HasColumnType("int");
-
-                    b.Property<string>("email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("fkPersonStu")
                         .HasColumnType("int");
@@ -167,7 +167,7 @@ namespace BackendSico.Migrations
             modelBuilder.Entity("BackendSico.Models.Student", b =>
                 {
                     b.HasOne("BackendSico.Models.Person", "Person")
-                        .WithMany()
+                        .WithMany("Students")
                         .HasForeignKey("fkPersonStu")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -178,12 +178,19 @@ namespace BackendSico.Migrations
             modelBuilder.Entity("BackendSico.Models.Teacher", b =>
                 {
                     b.HasOne("BackendSico.Models.Person", "Person")
-                        .WithMany()
+                        .WithMany("Teachers")
                         .HasForeignKey("fkPersonTea")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Person");
+                });
+
+            modelBuilder.Entity("BackendSico.Models.Person", b =>
+                {
+                    b.Navigation("Students");
+
+                    b.Navigation("Teachers");
                 });
 #pragma warning restore 612, 618
         }

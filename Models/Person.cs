@@ -30,7 +30,7 @@ namespace BackendSico.Models
         [Required]
         public int typePerson { get; set; }
 
-        //public virtual ICollection<Teacher>? Teachers{ get; set; }
-        //public virtual ICollection<Student>? Students{ get; set; }
+        public virtual ICollection<Teacher>? Teachers{ get; set; }
+        public virtual ICollection<Student>? Students{ get; set; }
     }
 }
