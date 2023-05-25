@@ -22,7 +22,7 @@ namespace BackendSico.Services
             return teacher;
         }
 
-        public async Task<Teacher> GetTeacherById(string id)
+        public async Task<Teacher> GetTeacherById(int id)
         {
             Teacher teacher = await _db.Teachers.FindAsync(id);
 

@@ -5,7 +5,7 @@ namespace BackendSico.Interfaces
     public interface ITeacher
     {
         Task<List<Teacher>> GetTeachers();
-        Task<Teacher> GetTeacherById(string id);
+        Task<Teacher> GetTeacherById(int id);
         Task<Teacher> CreateTeacher(Teacher teacher);
     }
 }

@@ -27,7 +27,7 @@ namespace BackendSico.Controllers
 
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Teacher>> GetTeacher(string id)
+        public async Task<ActionResult<Teacher>> GetTeacher(int id)
         {
             var teacher = await _teacher.GetTeacherById(id);
 
@@ -75,7 +75,7 @@ namespace BackendSico.Controllers
                 _response.IsSuccess = true;
                 _response.Result = model;
                 _response.DisplayMessage = "Person create";
-                return CreatedAtAction("GetPerson", new { id = model.id }, _response);
+                return CreatedAtAction("GetTeacher", new { id = model.id }, _response);
             }
             catch (Exception ex)
             {

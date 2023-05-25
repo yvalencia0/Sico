@@ -28,7 +28,7 @@ namespace BackendSico.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Person>> GetPerson(string id)
+        public async Task<ActionResult<Person>> GetPerson(int id)
         {
             var person = await _person.GetPersonById(id);
 

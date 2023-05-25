@@ -20,6 +20,9 @@ builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 //Repositorios
 builder.Services.AddScoped<IPerson, PersonService>();
 builder.Services.AddScoped<ITeacher, TeacherService>();
+builder.Services.AddScoped<IStudent, StudentService>();
+builder.Services.AddScoped<ICourse, CourseService>();
+builder.Services.AddScoped<ICourseDetail, CourseDetailService>();
 
 
 builder.Services.AddControllers();

@@ -10784,19 +10784,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\admin\\.nuget\\packages\\": {}
+    "C:\\Users\\yoshi\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Yoshi\\Net-Angular\\BackendSico\\BackendSico.csproj",
+      "projectUniqueName": "C:\\Users\\yoshi\\Desktop\\SICO\\BackendSico.csproj",
       "projectName": "BackendSico",
-      "projectPath": "D:\\Yoshi\\Net-Angular\\BackendSico\\BackendSico.csproj",
-      "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
-      "outputPath": "D:\\Yoshi\\Net-Angular\\BackendSico\\obj\\",
+      "projectPath": "C:\\Users\\yoshi\\Desktop\\SICO\\BackendSico.csproj",
+      "packagesPath": "C:\\Users\\yoshi\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\yoshi\\Desktop\\SICO\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\yoshi\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -10872,7 +10872,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
       }
     }
   }

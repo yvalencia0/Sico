@@ -21,7 +21,7 @@ namespace BackendSico.Services
             return person;
         }
 
-        public async Task<Person> GetPersonById(string id)
+        public async Task<Person> GetPersonById(int id)
         {
             Person person = await _db.People.FindAsync(id);
 
