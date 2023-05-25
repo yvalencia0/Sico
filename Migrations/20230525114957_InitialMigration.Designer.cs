@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BackendSico.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230525032304_InitialMigration")]
+    [Migration("20230525114957_InitialMigration")]
     partial class InitialMigration
     {
         /// <inheritdoc />
@@ -101,6 +101,10 @@ namespace BackendSico.Migrations
                 {
                     b.Property<int>("id")
                         .HasColumnType("int");
+
+                    b.Property<string>("email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("fkPersonStu")
                         .HasColumnType("int");

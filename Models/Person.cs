@@ -23,6 +23,10 @@ namespace BackendSico.Models
         [StringLength(20)]
         public string lastname2 { get; set; }
 
+        [Required(ErrorMessage = "The email address is required")]
+        [EmailAddress(ErrorMessage = "Invalid email address")]
+        public string email { get; set; }
+
         [Required]
         public int typePerson { get; set; }
 

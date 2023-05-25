@@ -33,6 +33,7 @@ namespace BackendSico.Migrations
                 {
                     id = table.Column<int>(type: "int", nullable: false),
                     tuition = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    email = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     fkPersonStu = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>

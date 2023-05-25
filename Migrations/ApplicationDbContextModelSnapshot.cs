@@ -99,6 +99,10 @@ namespace BackendSico.Migrations
                     b.Property<int>("id")
                         .HasColumnType("int");
 
+                    b.Property<string>("email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("fkPersonStu")
                         .HasColumnType("int");
 
