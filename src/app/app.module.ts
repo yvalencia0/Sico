@@ -9,19 +9,24 @@ import { FilterComponent } from './components/filter/filter.component';
 import { HttpClientModule } from '@angular/common/http';
 import { StudentService } from './services/student.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { MatTableModule } from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import {MatButtonModule} from '@angular/material/button';
-import {MatDialogModule} from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule } from '@angular/material/dialog';
+import { CourseComponent } from './components/course/course.component';
+import { CourseService } from './services/course.service';
+import { PersonService } from './services/person.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     StudentsComponent,
     StudentComponent,
-    FilterComponent
+    FilterComponent,
+    CourseComponent
   ],
   imports: [
     BrowserModule,
@@ -32,9 +37,10 @@ import {MatDialogModule} from '@angular/material/dialog';
     MatInputModule,
     MatFormFieldModule,
     MatButtonModule,
-    MatDialogModule
+    MatDialogModule,
+    ReactiveFormsModule
   ],
-  providers: [StudentService],
+  providers: [PersonService, StudentService, CourseService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

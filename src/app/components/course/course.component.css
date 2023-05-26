@@ -1,0 +1,15 @@
+.course{
+    width: 90%;
+    margin: auto;
+    margin-bottom: 10px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.course label{
+    width: 80%;
+}
+
+.course button{
+    width: 20%;
+}

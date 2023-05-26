@@ -1,0 +1,14 @@
+h2, h3{
+    width: 100%;
+    text-align: center;
+}
+.details{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.myCourseList, .courseList{
+    width: 48%;
+    height: 300px;
+    border: 1px solid black;
+}

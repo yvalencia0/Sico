@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, Input, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { CourseService } from 'src/app/services/course.service';
+import { StudentService } from 'src/app/services/student.service';
 
 @Component({
   selector: 'app-student',
@@ -7,9 +11,45 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StudentComponent implements OnInit {
 
-  constructor() { }
+  studentForm: FormGroup;
+  courses:any[] = [];
+  
 
-  ngOnInit(): void {
+
+  constructor(
+    private _studentService: StudentService,
+    private _courseService: CourseService,
+    private _fb: FormBuilder,
+    private _dialogRef: MatDialogRef<StudentComponent>,
+    @Inject(MAT_DIALOG_DATA) public student:any) {
+
+      this.studentForm = this._fb.group({
+        id:new FormControl(),
+        name1:new FormControl(),
+        name2:new FormControl(),
+        lastname1:new FormControl(),
+        lastname2:new FormControl(),
+        email:new FormControl()
+      });
   }
 
+
+    
+  ngOnInit(): void {
+    this.studentForm.patchValue(this.student);
+    this.getStudent();
+    this.getCourses();
+  }
+
+  getStudent(){
+    
+  }
+
+  getCourses(){
+    this._courseService.getCoursesList().subscribe({
+      next:(res) => {
+        this.courses =  res.result;
+      },
+    });
+  }
 }

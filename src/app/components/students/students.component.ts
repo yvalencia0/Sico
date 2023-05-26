@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import {MatTableDataSource, MatTableModule} from '@angular/material/table';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
@@ -8,6 +8,8 @@ import { PersonService } from 'src/app/services/person.service';
 import { MatDialog } from '@angular/material/dialog';
 import { StudentComponent } from '../student/student.component';
 
+
+/*
 export interface PeriodicElement {
   id: number;
   name1: string;
@@ -18,7 +20,7 @@ export interface PeriodicElement {
   tuition: string;
   courses: string;
 }
-
+*/
 /*
 const ELEMENT_DATA: PeriodicElement[] = [
   {id: 1, name1: "Julio", name2: 'Yosimar', lastname1: 'Valencia', lastname2: 'Ortega', email:'correo'},
@@ -32,6 +34,7 @@ const ELEMENT_DATA: PeriodicElement[] = [
   templateUrl: './students.component.html',
   styleUrls: ['./students.component.css']
 })
+
 export class StudentsComponent implements OnInit {
 
   constructor(private _studentService: StudentService, private _personService: PersonService, private _modal: MatDialog) { }
@@ -49,15 +52,17 @@ export class StudentsComponent implements OnInit {
   }
 
   getPeopleList(){
-    this._studentService.getPeopleList().subscribe({
+    this._studentService.getStudentsList().subscribe({
       next:(res)=>{
 
         res.result.forEach((student:any) => {
-          console.log(this._personService.getPeopleList(student.id).subscribe({
+          /*
+          this._personService.getPeopleList(student.id).subscribe({
             next:(res)=>{
-              console.log(res.result);
+              //console.log(res.result);
             }
-          }));
+          });
+          */
 
         });
         //console.log(res.result);
@@ -71,10 +76,15 @@ export class StudentsComponent implements OnInit {
   }
 
 
-  openModal(student:number){
+  openModal(data:any){
     //Abre la modal y le cambia el tamaño predeterminado
-    const modal = this._modal.open(StudentComponent,{
-        width: '800px'
+    // const modal = this._modal.open(StudentComponent,{
+    //     width: '800px',
+    //     student
+    //   });
+      const modal = this._modal.open(StudentComponent,{
+        width:'800px',
+        data
       });
 
     //Una vez se cierra la modal, trae nuevamente las personas 

@@ -1,0 +1,5 @@
+<div class="course">
+    <label>{{ description }}</label>
+    <button mat-raised-button color="primary" *ngIf="!isAsigned">Add</button>
+    <button mat-raised-button color="warn" *ngIf="isAsigned">Delete</button>
+</div>

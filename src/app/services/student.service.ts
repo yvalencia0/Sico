@@ -9,7 +9,11 @@ export class StudentService {
 
   constructor(private _http:HttpClient) { }
 
-  getPeopleList(): Observable<any>{
+  getStudentsList(): Observable<any>{
     return this._http.get('https://localhost:44344/api/Students');
+  }
+
+  getStudent(id:number): Observable<any>{
+    return this._http.get(`https://localhost:44344/api/Students/${id}`);
   }
 }
