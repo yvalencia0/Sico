@@ -25,7 +25,10 @@ namespace BackendSico.Migrations
             modelBuilder.Entity("BackendSico.Models.Course", b =>
                 {
                     b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"));
 
                     b.Property<string>("description")
                         .IsRequired()

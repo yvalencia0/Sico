@@ -18,7 +18,7 @@ namespace BackendSico.Services
 
         public async Task<CourseDetail> CreateCourseDetail(CourseDetail courseDetail)
         {
-            List < CourseDetail > list = await _db.CourseDetails.ToListAsync();
+            List<CourseDetail> list = await _db.CourseDetails.ToListAsync();
 
             list.Where(student => student.fkStudent == courseDetail.fkStudent && student.fkCourse == courseDetail.fkCourse);
 
@@ -44,6 +44,34 @@ namespace BackendSico.Services
             List<CourseDetail> list = await _db.CourseDetails.ToListAsync();
 
             return list;
+        }
+
+        public async Task<List<CourseDetail>> GetCourseDetailsStudent(int student)
+        {
+            List<CourseDetail> list = await _db.CourseDetails.Where(courseDetail => courseDetail.fkStudent == student).ToListAsync();
+
+            return list;
+        }
+
+        public async Task<bool> DeleteCourseDetail(int id)
+        {
+            try
+            {
+                CourseDetail courseDetail = await _db.CourseDetails.FindAsync(id);
+                if (courseDetail == null)
+                {
+                    return false;
+                }
+                _db.CourseDetails.Remove(courseDetail);
+                await _db.SaveChangesAsync();
+
+                return true;
+            }
+            catch (Exception)
+            {
+
+                return false;
+            }
         }
     }
 }

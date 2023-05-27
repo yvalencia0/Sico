@@ -6,6 +6,7 @@ namespace BackendSico.Models
     public class CourseDetail
     {
         [Key]
+        //[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int id { get; set; }
 

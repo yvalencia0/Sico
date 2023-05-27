@@ -46,6 +46,27 @@ namespace BackendSico.Controllers
             return Ok(_response);
         }
 
+
+        [HttpGet("student/{student}")]
+        public async Task<ActionResult<IEnumerable<CourseDetail>>> GetCourseDetailsStudent(int student)
+        {
+            try
+            {
+                var list = await _courseDetail.GetCourseDetailsStudent(student);
+                _response.IsSuccess = true;
+                _response.Result = list;
+                _response.DisplayMessage = "Course detail per student";
+            }
+            catch (Exception ex)
+            {
+                _response.IsSuccess = false;
+                _response.ErrorMessages = new List<string> { ex.ToString() };
+            }
+
+            return Ok(_response);
+        }
+
+
         // GET: api/CourseDetails/5
         [HttpGet("{id}")]
         public async Task<ActionResult<CourseDetail>> GetCourseDetail(int id)
@@ -81,6 +102,36 @@ namespace BackendSico.Controllers
             {
                 _response.IsSuccess = false;
                 _response.DisplayMessage = "Error to save register";
+                _response.ErrorMessages = new List<string> { ex.ToString() };
+                return BadRequest(_response);
+            }
+        }
+
+
+        // DELETE: api/CourseDetails/5
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteCourseDetail(int id)
+        {
+            try
+            {
+                bool estaEliminado = await _courseDetail.DeleteCourseDetail(id);
+                if (estaEliminado)
+                {
+                    _response.IsSuccess = true;
+                    _response.Result = estaEliminado;
+                    _response.DisplayMessage = "This course detail was removed";
+                    return Ok(_response);
+                }
+                else
+                {
+                    _response.IsSuccess = false;
+                    _response.DisplayMessage = "Error to remove this course detail";
+                    return BadRequest(_response);
+                }
+            }
+            catch (Exception ex)
+            {
+                _response.IsSuccess = false;
                 _response.ErrorMessages = new List<string> { ex.ToString() };
                 return BadRequest(_response);
             }

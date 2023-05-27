@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BackendSico.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230525142128_InitialMigration")]
+    [Migration("20230527032329_InitialMigration")]
     partial class InitialMigration
     {
         /// <inheritdoc />
@@ -28,7 +28,10 @@ namespace BackendSico.Migrations
             modelBuilder.Entity("BackendSico.Models.Course", b =>
                 {
                     b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"));
 
                     b.Property<string>("description")
                         .IsRequired()

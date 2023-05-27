@@ -70,7 +70,8 @@ namespace BackendSico.Migrations
                 name: "Course",
                 columns: table => new
                 {
-                    id = table.Column<int>(type: "int", nullable: false),
+                    id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     description = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: false),
                     fkTeacher = table.Column<int>(type: "int", nullable: false)
                 },
