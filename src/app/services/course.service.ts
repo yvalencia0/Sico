@@ -21,12 +21,16 @@ export class CourseService {
     return this._http.get(`https://localhost:44344/api/CourseDetails/${id}`);
   }
 
+  getCourseDetailList(): Observable<any>{
+    return this._http.get(`https://localhost:44344/api/CourseDetails/`);
+  }
+
   getAssignedCoursesList(student:number): Observable<any>{
     return this._http.get(`https://localhost:44344/api/CourseDetails/student/${student}`);
   }
 
-  createCourseDetail(course:number, student:number): Observable<any>{
-    return this._http.get(`https://localhost:44344/api/CourseDetails/student/${student}`);
+  createCourseDetail(courseDetail:any): Observable<any>{
+    return this._http.post(`https://localhost:44344/api/CourseDetails/`, courseDetail);
   }
 
   deleteCourseDetail(courseDetail:number): Observable<any>{

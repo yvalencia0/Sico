@@ -9,7 +9,7 @@ import { FilterComponent } from './components/filter/filter.component';
 import { HttpClientModule } from '@angular/common/http';
 import { StudentService } from './services/student.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { MatTableModule } from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
@@ -20,6 +20,9 @@ import { CourseComponent } from './components/course/course.component';
 import { CourseService } from './services/course.service';
 import { PersonService } from './services/person.service';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatSelectModule } from '@angular/material/select';
+import { MatIconModule } from '@angular/material/icon';
+
 
 @NgModule({
   declarations: [
@@ -40,7 +43,10 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatButtonModule,
     MatDialogModule,
     ReactiveFormsModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatSelectModule,
+    MatIconModule,
+    FormsModule
   ],
   providers: [PersonService, StudentService, CourseService],
   bootstrap: [AppComponent]

@@ -1,1 +1,21 @@
-<p>filter works!</p>
+<div>
+    <mat-form-field>
+        <mat-label>Filter by {{ selected }}</mat-label>
+        <mat-select [(value)]="selected">
+          <mat-option>None</mat-option>
+          <mat-option value="id">id</mat-option>
+          <mat-option value="firstName">First Name</mat-option>
+          <mat-option value="firstLastname">First Lastname</mat-option>
+          <mat-option value="email">Email</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="example-form-field">
+      <mat-label>Search me</mat-label>
+      <input matInput type="text" [(ngModel)]="value">
+      <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+    <button mat-raised-button (click)="filterPeople(value)">Filter</button>
+</div>

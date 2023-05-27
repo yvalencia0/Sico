@@ -19,10 +19,8 @@ export class StudentComponent implements OnInit {
 
 
   constructor(
-    private _studentService: StudentService,
     private _courseService: CourseService,
     private _fb: FormBuilder,
-    private _dialogRef: MatDialogRef<StudentComponent>,
     @Inject(MAT_DIALOG_DATA) public student:any) {
 
       this.studentForm = this._fb.group({
@@ -60,17 +58,6 @@ export class StudentComponent implements OnInit {
     this._courseService.getAssignedCoursesList(student).subscribe({
       next:(res) => {
         this.assignedCourses =  res.result;
-        //console.log("AssignedCourses",this.assignedCourses);
-        // this.assignedCourses.forEach(x =>{
-        //   //console.log(x.course);
-        //   this._courseService.getCourse(x.id).subscribe({
-        //     next:(respuesta) => {
-        //       x.course =  respuesta.result.description;
-        //       //console.log(respuesta.result);
-              
-        //     },
-        //   });
-        // });
       },
     });
 

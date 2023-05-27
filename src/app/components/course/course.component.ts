@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { CourseService } from 'src/app/services/course.service';
+import { PersonService } from 'src/app/services/person.service';
 
 @Component({
   selector: 'app-course',
@@ -15,15 +17,16 @@ export class CourseComponent implements OnInit {
   @Input() coursesList:any[] = [];
 
   description: string = "";
+  teacher: string = "";
   idCourse:number = 0;
-  
-  constructor( private _courseService: CourseService) { }
+  idNewCourseDetails:number = 0;
+  courseDetailList:any[] = [];
+
+
+  constructor( private _courseService: CourseService, private _personService: PersonService, private _modal: MatDialog) { }
 
   ngOnInit(): void {
     this.getCourse(this.idCourseDetail);
-    //console.log("Student->", this.studentId)
-    //console.log(this.coursesList);
-    //console.log(this.assignedCourses);
   }
 
   getCourse(id:number){
@@ -31,74 +34,52 @@ export class CourseComponent implements OnInit {
     this._courseService.getCourse(id).subscribe({
       next:(res) => {
         this.description =  res.result.description;
-        //console.log(respuesta.result);
-        
+
+        this._personService.getPeopleList(res.result.fkTeacher).subscribe({
+          next:(res) => {
+            this.teacher =  `${res.result.name1}  ${res.result.lastname1}`;
+          },
+        });
       },
     });
-    
-    // this._courseService.getCourseDetail(id).subscribe({
-    //   next:(res) => {
-
-    //     this.idCourse =  res.result.fkCourse;
-    //     this._courseService.getCourse(this.idCourse).subscribe({
-    //       next:(res) => {
-    //         this.description =  res.result.description;
-    //         //console.log(respuesta.result);
-            
-    //       },
-    //     });
-
-    //   },
-    // });
-
     
   }
 
   assignedCourse(course:number){
     
-    console.log("Curso-->",course, " Student-->", this.studentId);
-
-    //console.log("student->", this.studentId, "  assignedList->",this.assignedCourses, "  coursesList->",this.coursesList);
-    console.log(this.assignedCourses);
-    
     const isAsignedCourse = this.assignedCourses.filter(e => e.fkCourse == course);
-    //(isAsignedCourse.length > 0) ? console.log(`Este curso no se puede asignar`) : console.log("Assignado");
-    if(isAsignedCourse.length > 0){
-        //this._courseService.
+    (isAsignedCourse.length > 0) ? console.log(`Este curso no se puede asignar`) : console.log("Assignado");
+    
+    if(isAsignedCourse.length < 1){
+
+      this._courseService.getCourseDetailList().subscribe({
+        next:(res) => {
+          this.courseDetailList = res.result;
+          this.idNewCourseDetails = (this.courseDetailList[this.courseDetailList.length-1].id) + 1;
+
+          const newCourseDetail = {
+            id: this.idNewCourseDetails,
+            fkCourse: course,
+            fkStudent: this.studentId
+          };
+          
+          this._courseService.createCourseDetail(newCourseDetail).subscribe();
+        },
+      });
+      
     }
 
-
-
-    
-    // this._courseService.getAssignedCoursesList(this.studentId).subscribe({
-    //   next:(res) => {
-    //     this.assignedCourses =  res.result;
-    //     console.log(res.result);
-        
-    //   },
-    // });
-    
-    //const isAsigned = this.assignedCourses.filter(e => e.id = course);
-    // if(isAsigned.length > 0){
-    //   return console.log("Error Assigned->", course);
-    // }
-    
-    // return console.log("Assigned->", course);
+    this._modal.closeAll();
 
   }
 
   unAssignedCourse(courseDetail:number){
-    //console.log("student->", this.studentId, "  assignedList->",this.assignedCourses, "  coursesList->",this.coursesList);
-    // console.log("unAssigned->", courseDetail);
-    // console.log(courseDetail);
-
-    this._courseService.deleteCourseDetail(courseDetail).subscribe({
-      next:(res) => {
-        this.assignedCourses =  res.result;
-        console.log(res.result);
-      },
-    });
     
+    const courseDetailId = this.assignedCourses.filter(e => e.fkCourse == courseDetail);
+    
+    this._courseService.deleteCourseDetail(courseDetailId[0].id).subscribe();
+    
+    this._modal.closeAll();
   }
-
+  
 }
