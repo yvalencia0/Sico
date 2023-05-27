@@ -1,5 +1,5 @@
 <div class="course">
     <label>{{ description }}</label>
-    <button mat-raised-button color="primary" *ngIf="!isAsigned">Add</button>
-    <button mat-raised-button color="warn" *ngIf="isAsigned">Delete</button>
+    <button mat-raised-button color="primary" *ngIf="!isAsigned" (click)="assignedCourse(idCourseDetail)">Add</button>
+    <button mat-raised-button color="warn" *ngIf="isAsigned" (click)="unAssignedCourse(idCourseDetail)">Delete</button>
 </div>

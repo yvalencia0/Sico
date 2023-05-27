@@ -13,6 +13,8 @@ export class StudentComponent implements OnInit {
 
   studentForm: FormGroup;
   courses:any[] = [];
+  assignedCourses:any[] = [];
+  
   
 
 
@@ -39,6 +41,7 @@ export class StudentComponent implements OnInit {
     this.studentForm.patchValue(this.student);
     this.getStudent();
     this.getCourses();
+    this.getAssignedCoursesList(this.student.id);
   }
 
   getStudent(){
@@ -51,5 +54,25 @@ export class StudentComponent implements OnInit {
         this.courses =  res.result;
       },
     });
+  }
+
+  getAssignedCoursesList(student:number){
+    this._courseService.getAssignedCoursesList(student).subscribe({
+      next:(res) => {
+        this.assignedCourses =  res.result;
+        //console.log("AssignedCourses",this.assignedCourses);
+        // this.assignedCourses.forEach(x =>{
+        //   //console.log(x.course);
+        //   this._courseService.getCourse(x.id).subscribe({
+        //     next:(respuesta) => {
+        //       x.course =  respuesta.result.description;
+        //       //console.log(respuesta.result);
+              
+        //     },
+        //   });
+        // });
+      },
+    });
+
   }
 }

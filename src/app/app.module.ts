@@ -19,6 +19,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { CourseComponent } from './components/course/course.component';
 import { CourseService } from './services/course.service';
 import { PersonService } from './services/person.service';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { PersonService } from './services/person.service';
     MatFormFieldModule,
     MatButtonModule,
     MatDialogModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatSnackBarModule
   ],
   providers: [PersonService, StudentService, CourseService],
   bootstrap: [AppComponent]
